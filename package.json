@@ -1,0 +1,25 @@
+{
+  "name": "thom-aws-kenesis",
+  "version": "1.0.0",
+  "description": "localstack setup to learn some kenesis",
+  "main": "index.ts",
+  "scripts": {
+    "create": "aws --endpoint-url http://localhost:4566 kinesis create-stream --stream-name thom-stream --shard-count 1",
+    "list-streams": "aws --endpoint-url=http://localhost:4566 kinesis list-streams",
+    "put": "aws --endpoint-url=http://localhost:4566 kinesis put-record --stream-name=thom-stream --data=testData --partition-key=testKey",
+    "list-shards": "aws --endpoint-url=http://localhost:4566 kinesis list-shards --stream-name=thom-stream",
+    "get-shard-iterator": "aws --endpoint-url=http://localhost:4566 kinesis get-shard-iterator --stream-name=thom-stream --shard-id=shardId-000000000000 --shard-iterator-type=LATEST",
+    "up": "SERVICES=kenesis docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack",
+    "down": "docker compose down --rmi local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomblweed/thom-aws-kenisis.git"
+  },
+  "author": "Thomas Newman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomblweed/thom-aws-kenisis/issues"
+  },
+  "homepage": "https://github.com/thomblweed/thom-aws-kenisis#readme"
+}
